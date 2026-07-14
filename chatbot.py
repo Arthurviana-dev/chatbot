@@ -4,25 +4,24 @@ from openai import OpenAI
 # Título do chatbot
 st.write("# Chatbot do Arthur")
 
-# Inicializa o cliente OpenAI (Lembra-te de colocar a tua API Key real aqui)
-# Recomendação: Coloque a sua chave no arquivo .streamlit/secrets.toml
-client = OpenAI(api_key="minha_chave_api")
+# Inicializa o cliente OpenAI (api rest para se conectar aos dois programas)
+client = OpenAI(api_key="minha_chave_api)
 
 # Inicializa o histórico de mensagens se não existir
 if "lista_mensagens" not in st.session_state:
     st.session_state.lista_mensagens = []
 
-# Campo de entrada de texto do utilizador
+# Campo de entrada de texto do usuário 
 texto_usuario = st.chat_input("Digite sua mensagem")
 
-# 1. MOSTRAR O HISTÓRICO: Exibe as mensagens anteriores
+# 1. mostrar o histórico de mensagens
 for mensagem in st.session_state["lista_mensagens"]:
     with st.chat_message(mensagem["role"]):
         st.write(mensagem["content"])
 
-# 2. PROCESSAR NOVA MENSAGEM: Se o utilizador digitou algo
+# 2. processar nova mensagem: Se o usuário digitou algo
 if texto_usuario:
-    # Guarda e exibe a mensagem do utilizador imediatamente
+    # Guarda e exibe a mensagem do usuário imediatamente
     mensagem_usuario = {"role": "user", "content": texto_usuario}
     st.session_state["lista_mensagens"].append(mensagem_usuario)
     
